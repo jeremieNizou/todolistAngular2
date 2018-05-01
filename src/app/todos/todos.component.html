@@ -1,0 +1,22 @@
+<div id="titre" class="divs">
+	<h1>Todo List</h1>
+</div>
+
+<div id="todoList" class="divs">
+	<div class="divs">
+		Rechercher : <input [(ngModel)]="recherche.nom">
+	</div>
+	<form (ngSubmit)="ajouterTodo(newTodo)">
+		<input placeholder="Que devez-vous faire ?" [(ngModel)]="newTodo.nom" class="todoItem" type="text" [ngModelOptions]="{standalone: true}" >
+	</form>
+
+	<div *ngIf="chargement">
+		Chargement en cours...
+	</div>
+	<div *ngFor="let todo of todos; let i = index " class="divFade divs">
+		{{todo.nom}}
+
+		<div class="inlineBox pull-right">
+			<span class="supprime pull-left" (click)="supprimerTodo(todo, i)">x</span>
+		</div>
+	</div>
